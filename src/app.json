@@ -1,15 +1,47 @@
 {
+  "cloud": true,
   "pages": [
     "pages/index/main",
-    "pages/logs/main",
     "pages/counter/main",
     "pages/music/main",
     "pages/home/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTitleText": "嘻嘻",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#6f6f6f",
+    "selectedColor": "#18a3ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/main",
+        "text": "首页",
+        "iconPath": "static/img/shou.png",
+        "selectedIconPath": "static/img/shous.png"
+      },
+      {
+        "pagePath": "pages/home/main",
+        "text": "消息",
+        "iconPath": "static/img/message.png",
+        "selectedIconPath": "static/img/messages.png"
+      },
+      {
+        "pagePath": "pages/music/main",
+        "text": "发现",
+        "iconPath": "static/img/sou.png",
+        "selectedIconPath": "static/img/sous.png"
+      },
+      {
+        "pagePath": "pages/counter/main",
+        "text": "我",
+        "iconPath": "static/img/me.png",
+        "selectedIconPath": "static/img/mes.png"
+      }
+    ]
   }
 }

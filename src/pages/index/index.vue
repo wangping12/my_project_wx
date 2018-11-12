@@ -1,39 +1,38 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
-    <div class="userinfo">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
-    </div>
-    <div class="menu">
-      <button @click="myHome" class="homeBtn">我的微博</button>
-      <button @click="myMusic" class="homeBtn">我的音乐</button>
+    <view class="tabHeader">
+      <span v-for='(tab ,index) in tabs' :key='index'
+        :class=" currentPage==tab.id ? 'on li': 'li' "
+        @click="changeTab(tab.id)">{{tab.name}}</span>  
+    </view>
+    <div class="conList">
+      <contentList :text='follow'/>
+      <contentList :text='hot'/>
     </div>
   </div>
 </template>
 
 <script>
 import card from '@/components/card'
+import contentList from '@/components/contentList'
 
 export default {
   data () {
     return {
-      userInfo: {}
+      userInfo: {},
+      tabs:[{id: 'follow', name: '关注'}, {id: 'hot', name: '热门'}],
+      currentPage: 'follow'
     }
   },
 
   components: {
-    card
+    card,
+    contentList
   },
 
   methods: {
     myMusic () {
       const url = '../music/main'
-      wx.navigateTo({ url })
-    },
-    myHome () {
-      const url = '../home/main'
       wx.navigateTo({ url })
     },
     getUserInfo () {
@@ -50,6 +49,9 @@ export default {
     },
     clickHandle (msg, ev) {   // 打印点击处的信息    
       // console.log('clickHandle:', msg, ev)
+    },
+    changeTab (msg) {
+      this.currentPage = msg
     }
   },
 
@@ -61,27 +63,21 @@ export default {
 </script>
 
 <style scoped>
-.userinfo {
+.tabHeader {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-.menu{
-  display:flex;
-  justify-content:space-between;
+  flex-direction: row;
+  justify-content: center;
   width:100%;
-  margin-top:90rpx;
+  background-color:#eee;
+  height:95rpx;
+}
+.on{
+  color: #FF4500;  
+  border-bottom: 5rpx solid #FF4500;
+}
+.li{
+  padding:0 20rpx;
+  line-height:90rpx;
 }
 
 </style>
